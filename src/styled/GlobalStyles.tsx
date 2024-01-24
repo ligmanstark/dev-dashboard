@@ -48,7 +48,6 @@ export const GlobalStyles: FC = () => (
         }
       }
 
-
       body {
         font-family: 'Space Mono', monospace;
         font-weight: 400;

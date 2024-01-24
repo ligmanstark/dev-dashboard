@@ -8,9 +8,9 @@ export const userGithubApi = createApi({
     baseUrl: BASE_URL
   }),
   endpoints: (builder) => ({
-    getUsers: builder.query<GithubUsers[], number>({
-      query: (page) => ({
-        url: `search/users?q=Q&page=${page}`,
+    getUsers: builder.query<GithubUsers[], { page: number; sort: string }>({
+      query: ({ page, sort }) => ({
+        url: `search/users?q=Q&page=${page}&sort=repositories&order=${sort}`,
         method: 'GET',
         headers: {
           'content-type': 'application/json'

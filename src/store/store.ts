@@ -7,6 +7,7 @@ import usersReducer from './slices/usersSlice';
 import userReducer from './slices/userSlice';
 import modalReducer from './slices/modalSlice';
 import reposReducer from './slices/reposSlice';
+import pagesReducer from './slices/pagesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     usersReducer: usersReducer,
     userReducer: userReducer,
     modalReducer: modalReducer,
-    reposReducer: reposReducer
+    reposReducer: reposReducer,
+    pagesReducer: pagesReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

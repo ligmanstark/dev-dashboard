@@ -4,7 +4,6 @@ import { Container } from '../../styled/components';
 import Link from 'next/link';
 
 export const Wrapper = styled.header`
-  
   background: transparent;
   height: 6rem;
   display: flex;
