@@ -18,7 +18,6 @@ export const Footer: FC = () => {
         <Container>
           {/* <button onClick={scrollPageUp}>
  						</button> */}
-          Footer
         </Container>
       </Wrapper>
     </>

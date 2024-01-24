@@ -4,8 +4,12 @@ import { Container } from '../../styled/components';
 import Link from 'next/link';
 
 export const Wrapper = styled.header`
+  
   background: transparent;
   height: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const MyContainer = styled(Container)`
@@ -27,4 +31,18 @@ export const ButtonBox = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   gap: 1rem;
+`;
+
+export const Header = styled.header`
+  margin: 35px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Logo = styled.div`
+  color: var(--switcher-color);
+  font-size: 1.75rem;
+  line-height: 1.5;
+  font-weight: 700;
 `;
