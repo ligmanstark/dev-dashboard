@@ -5,8 +5,7 @@ import { Header } from '../Layout/Header/Header';
 import { Footer } from '../Layout/Footer/Footer';
 import { Container } from '../styled/components';
 import { Search } from '../components/Search/Search';
-import { Pagination } from '../components/Pagination/Pagination';
-import {
+ import {
   useLazyGetUserQuery,
   useLazyGetUsersQuery,
   useGetUsersQuery
@@ -54,15 +53,13 @@ const Home = () => {
   return (
     <>
       <main>
-        {/* materialize-css */}
         <GlobalStyles />
         <>
           <Header />
           <Container>
             <Search onSubmit={handleFetchUser} />
-            <Pagination/>
           </Container>
-          <Footer />
+          <Footer handlePagination={handlePagination} />
         </>
       </main>
     </>

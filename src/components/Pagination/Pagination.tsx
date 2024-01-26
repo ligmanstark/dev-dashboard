@@ -1,31 +1,43 @@
+'use client';
 import * as S from './style';
-export const Pagination = () => {
+import { useState, useEffect, FC } from 'react';
+import { NextPageIcon, PrevPageIcon } from '../../assets/index';
+
+interface Props {
+  handlePagination: (page: number, sort: string) => void;
+}
+export const Pagination: FC<Props> = ({ handlePagination }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handleNextPage = () => {
+    if (currentPage < 35) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+  useEffect(() => {
+    handlePagination(currentPage, '');
+  }, [currentPage]);
+  
   return (
     <S.Ul>
-      <S.Li>
-        <a href="#!">
-          <i></i>
-        </a>
+      <S.Li onClick={handlePrevPage}>
+        <PrevPageIcon />
       </S.Li>
-      <S.Li>
-        <a href="#!">1</a>
+      <S.Li
+        style={{
+          marginBottom: '1rem'
+        }}
+      >
+        {currentPage}
       </S.Li>
-      <S.Li>
-        <a href="#!">2</a>
-      </S.Li>
-      <S.Li>
-        <a href="#!">3</a>
-      </S.Li>
-      <S.Li>
-        <a href="#!">4</a>
-      </S.Li>
-      <S.Li>
-        <a href="#!">5</a>
-      </S.Li>
-      <S.Li>
-        <a href="#!">
-          <i>chevron_right</i>
-        </a>
+      <S.Li onClick={handleNextPage}>
+        <NextPageIcon />
       </S.Li>
     </S.Ul>
   );
