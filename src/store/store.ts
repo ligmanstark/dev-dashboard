@@ -8,6 +8,7 @@ import userReducer from './slices/userSlice';
 import modalReducer from './slices/modalSlice';
 import reposReducer from './slices/reposSlice';
 import pagesReducer from './slices/pagesSlice';
+import themeReducer from './slices/themeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ export const store = configureStore({
     userReducer: userReducer,
     modalReducer: modalReducer,
     reposReducer: reposReducer,
-    pagesReducer: pagesReducer
+    pagesReducer: pagesReducer,
+    themeReducer: themeReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

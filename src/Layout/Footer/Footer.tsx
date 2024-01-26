@@ -1,12 +1,12 @@
 'use client';
-import styled from '@emotion/styled';
-import { FC } from 'react';
+ import { FC } from 'react';
 import { Container } from '../../styled/components';
 import { Pagination } from '../../components/Pagination/Pagination';
+import * as S from './style';
 interface Props {
-  handlePagination:(page:number,sort:string)=>void
+  handleFetchUser: (login: string, page: number, sort: string) => void;
 }
-export const Footer: FC<Props> = ({ handlePagination }) => {
+export const Footer: FC<Props> = ({ handleFetchUser }) => {
   // const scrollPageUp = (event: React.MouseEvent<HTMLButtonElement>) => {
   // 	event.preventDefault();
   // 	window.scrollTo({
@@ -17,15 +17,15 @@ export const Footer: FC<Props> = ({ handlePagination }) => {
   // };
   return (
     <>
-      <Wrapper>
+      <S.Wrapper>
         <Container>
           {/* <button onClick={scrollPageUp}>
  						</button> */}
-          <Pagination handlePagination={handlePagination} />
+          <Pagination handleFetchUser={handleFetchUser} />
         </Container>
-      </Wrapper>
+      </S.Wrapper>
     </>
   );
 };
 
-const Wrapper = styled.footer``;
+ 
