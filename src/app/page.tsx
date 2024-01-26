@@ -5,6 +5,7 @@ import { Header } from '../Layout/Header/Header';
 import { Footer } from '../Layout/Footer/Footer';
 import { Container } from '../styled/components';
 import { Search } from '../components/Search/Search';
+import { Main } from '../Layout/Main/Main';
 import {
   useLazyGetUsersQuery,
   useGetUsersQuery
@@ -54,6 +55,7 @@ const Home = () => {
           <Header />
           <Container>
             <Search onSubmit={handleFetchUser} />
+            <Main/>
           </Container>
           <Footer handleFetchUser={handleFetchUser} />
         </>
