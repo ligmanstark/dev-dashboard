@@ -10,24 +10,24 @@ export const Pagination: FC<Props> = ({ handlePagination }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleNextPage = () => {
-    if (currentPage < 35) {
+    if (currentPage < 34) {
       setCurrentPage((prev) => prev + 1);
     }
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 0) {
+    if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
   };
   useEffect(() => {
     handlePagination(currentPage, '');
   }, [currentPage]);
-  
+
   return (
     <S.Ul>
       <S.Li onClick={handlePrevPage}>
-        <PrevPageIcon />
+        <PrevPageIcon fillColor={currentPage < 2 ? 'gray' : 'black'} />
       </S.Li>
       <S.Li
         style={{
@@ -37,7 +37,7 @@ export const Pagination: FC<Props> = ({ handlePagination }) => {
         {currentPage}
       </S.Li>
       <S.Li onClick={handleNextPage}>
-        <NextPageIcon />
+        <NextPageIcon fillColor={currentPage > 33 ? 'gray' : 'black'} />
       </S.Li>
     </S.Ul>
   );
