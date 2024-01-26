@@ -1,5 +1,5 @@
 'use client';
- import { FC } from 'react';
+import { FC } from 'react';
 import { Container } from '../../styled/components';
 import { Pagination } from '../../components/Pagination/Pagination';
 import * as S from './style';
@@ -27,5 +27,3 @@ export const Footer: FC<Props> = ({ handleFetchUser }) => {
     </>
   );
 };
-
- 

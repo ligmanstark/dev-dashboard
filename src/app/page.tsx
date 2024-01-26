@@ -44,7 +44,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(setUsers(data));
-    console.log(data);
   }, []);
 
   return (
@@ -55,7 +54,7 @@ const Home = () => {
           <Header />
           <Container>
             <Search onSubmit={handleFetchUser} />
-            <Main/>
+            <Main />
           </Container>
           <Footer handleFetchUser={handleFetchUser} />
         </>

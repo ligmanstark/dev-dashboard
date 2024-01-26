@@ -9,8 +9,8 @@ interface Props {
 }
 export const Pagination: FC<Props> = ({ handleFetchUser }) => {
   const [currentPage, setCurrentPage] = useState(1);
-   const login = useSelector((state: RootState) => state.pagesReducer.login);
-  const isDark = useSelector((state:RootState)=>state.themeReducer.isDark)
+  const login = useSelector((state: RootState) => state.pagesReducer.login);
+  const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
   const handleNextPage = () => {
     if (currentPage < 34) {
       setCurrentPage((prev) => prev + 1);
@@ -23,13 +23,12 @@ export const Pagination: FC<Props> = ({ handleFetchUser }) => {
     }
   };
   useEffect(() => {
-    handleFetchUser(login, currentPage, '');
+    handleFetchUser(login, currentPage, 'desc');
   }, [currentPage]);
 
- 
   return (
     <S.Ul>
-      {!isDark  ? (
+      {!isDark ? (
         <S.Li onClick={handlePrevPage}>
           <PrevPageIcon
             fillColor={currentPage < 2 ? 'transparent' : '#697c9a'}
