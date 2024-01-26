@@ -2,8 +2,11 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
 import { Container } from '../../styled/components';
-
-export const Footer: FC = () => {
+import { Pagination } from '../../components/Pagination/Pagination';
+interface Props {
+  handlePagination:(page:number,sort:string)=>void
+}
+export const Footer: FC<Props> = ({ handlePagination }) => {
   // const scrollPageUp = (event: React.MouseEvent<HTMLButtonElement>) => {
   // 	event.preventDefault();
   // 	window.scrollTo({
@@ -18,7 +21,7 @@ export const Footer: FC = () => {
         <Container>
           {/* <button onClick={scrollPageUp}>
  						</button> */}
-          Footer
+          <Pagination handlePagination={handlePagination} />
         </Container>
       </Wrapper>
     </>

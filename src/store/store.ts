@@ -1,21 +1,29 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-// import { goodsApi } from './service/goodsService';
-// import goodsReducer from './slices/goodsSlice';
-// import userReducer from './slices/userSlice';
+import { userGithubApi } from './service/userGithubService';
+import { reposGithubApi } from './service/reposGithubService';
+
+import usersReducer from './slices/usersSlice';
+import userReducer from './slices/userSlice';
 import modalReducer from './slices/modalSlice';
-// import commentsReducer from './slices/commentsSlice';
+import reposReducer from './slices/reposSlice';
+import pagesReducer from './slices/pagesSlice';
 
 export const store = configureStore({
   reducer: {
-    // [goodsApi.reducerPath]: goodsApi.reducer, - service/
-    // goodsReducer: goodsReducer, - slices/
-    // userReducer: userReducer,
-    modalReducer: modalReducer
-    // commentsReducer: commentsReducer,
-  }
-  // middleware: (getDefaultMiddleware) =>
-  // 	getDefaultMiddleware().concat(goodsApi.middleware), - мидлвара для service/
+    [userGithubApi.reducerPath]: userGithubApi.reducer,
+    [reposGithubApi.reducerPath]: reposGithubApi.reducer,
+    usersReducer: usersReducer,
+    userReducer: userReducer,
+    modalReducer: modalReducer,
+    reposReducer: reposReducer,
+    pagesReducer: pagesReducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      userGithubApi.middleware,
+      reposGithubApi.middleware
+    )
 });
 
 export type RootState = ReturnType<typeof store.getState>;
