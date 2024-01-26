@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Ul = styled.ul`
+
+
   display: flex;
   gap: 8rem;
   align-items: center;
