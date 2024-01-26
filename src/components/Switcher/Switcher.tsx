@@ -2,8 +2,10 @@
 import { useState, useEffect } from 'react';
 import * as S from './style';
 import { MoonIcon, SunIcon } from '../../assets/index';
-
+import { useDispatch } from 'react-redux';
+import { setTheme } from '../../store/slices/themeSlice';
 export const Switcher = () => {
+  const dispatch = useDispatch();
   const [isDark, setDark] = useState(false);
 
   const themeText = isDark ? 'Light' : 'Dark';
@@ -11,6 +13,7 @@ export const Switcher = () => {
 
   useEffect(() => {
     document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    dispatch(setTheme(isDark));
   }, [isDark]);
 
   return (

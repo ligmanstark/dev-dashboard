@@ -5,34 +5,27 @@ import { Header } from '../Layout/Header/Header';
 import { Footer } from '../Layout/Footer/Footer';
 import { Container } from '../styled/components';
 import { Search } from '../components/Search/Search';
- import {
-  useLazyGetUserQuery,
+import { Main } from '../Layout/Main/Main';
+import {
   useLazyGetUsersQuery,
   useGetUsersQuery
 } from '../store/service/userGithubService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUsers } from '../store/slices/usersSlice';
-import { setUser } from '../store/slices/userSlice';
-import { setPage, setSort } from '../store/slices/pagesSlice';
+import { setPage, setSort, setLogin } from '../store/slices/pagesSlice';
 import { RootState } from '../store/store';
 const Home = () => {
   const dispatch = useDispatch();
   const prevPage = useSelector((state: RootState) => state.pagesReducer.page);
   const prevSort = useSelector((state: RootState) => state.pagesReducer.sort);
+  const prevLogin = useSelector((state: RootState) => state.pagesReducer.login);
 
-  const { data = [] } = useGetUsersQuery({ page: 1, sort: 'desc' });
+  const { data = [] } = useGetUsersQuery({ login: 'a', page: 1, sort: 'desc' });
+
   const [fetchUsers] = useLazyGetUsersQuery();
 
-  const [fetchUser] = useLazyGetUserQuery();
-
-  const handleFetchUser = (login: string) => {
-    fetchUser(login)
-      .unwrap()
-      .then((response) => dispatch(setUser(response)));
-  };
-
-  const handlePagination = (page: number, sort: string) => {
-    fetchUsers({ page: page, sort: sort })
+  const handleFetchUser = (login: string, page: number, sort: string) => {
+    fetchUsers({ login: login, page: page, sort: sort })
       .unwrap()
       .then((response) => {
         if (page !== prevPage) {
@@ -41,14 +34,18 @@ const Home = () => {
         if (sort !== prevSort && sort !== '') {
           dispatch(setSort(sort));
         }
+        if (login !== prevLogin && login !== '') {
+          dispatch(setLogin(login));
+        }
         dispatch(setUsers(response));
+        console.log(response);
       });
   };
 
   useEffect(() => {
     dispatch(setUsers(data));
     console.log(data);
-  });
+  }, []);
 
   return (
     <>
@@ -58,8 +55,9 @@ const Home = () => {
           <Header />
           <Container>
             <Search onSubmit={handleFetchUser} />
+            <Main/>
           </Container>
-          <Footer handlePagination={handlePagination} />
+          <Footer handleFetchUser={handleFetchUser} />
         </>
       </main>
     </>
