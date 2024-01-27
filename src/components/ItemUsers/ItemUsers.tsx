@@ -1,31 +1,24 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 'use client';
 import * as S from './style';
 import { GithubUsers } from '../../types/types';
-import {useRouter} from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useGetReposQuery } from '../../store/service/reposGithubService';
-import { setLogin, setUser } from '../../store/slices/userSlice';
-import { useLazyGetUserQuery } from '../../store/service/userGithubService';
+import { setLogin } from '../../store/slices/userSlice';
 export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
-  const router = useRouter()
-  const [fetchUser] = useLazyGetUserQuery();
+  const router = useRouter();
   const dispatch = useDispatch();
   const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
-  const loginState = useSelector((state: RootState) => state.userReducer.login);
 
   const { data = [] } = useGetReposQuery({ login });
 
   const handleShowProfile = () => {
-    if (login)
-      fetchUser({ login: login })
-        .unwrap()
-        .then((response) => {
-          dispatch(setUser(response));
-          setTimeout(() => {
-            router.push(`http://localhost:3000/profile/${response.id}`)
-          }, 1000);
-        });
+    setTimeout(() => {
+      if (login) router.push(login);
+    }, 0);
   };
 
   return (

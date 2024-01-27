@@ -23,8 +23,8 @@ export const userGithubApi = createApi({
         }
       })
     }),
-    getUser: builder.query<GithubUser[], { login: string }>({
-      query: ({ login }) => ({
+    getUser: builder.query<GithubUser[], string>({
+      query: (login) => ({
         url: `users/${login}`,
         method: 'GET',
         headers: {

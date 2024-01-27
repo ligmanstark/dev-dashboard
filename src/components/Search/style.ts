@@ -65,3 +65,9 @@ export const Error = styled.div`
     bottom: unset;
   }
 `;
+
+export const SortBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;

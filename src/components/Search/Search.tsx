@@ -1,19 +1,28 @@
+'use client';
 import { SearchIcon } from '../../assets/index';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Button } from '../Button/Button';
 import * as S from './style';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSort } from '../../store/slices/pagesSlice';
 import { RootState } from '../../store/store';
+import { Down, Up } from '../../assets/index';
+import { useLazyGetUsersQuery } from '../../store/service/userGithubService';
+import { setUsers } from '../../store/slices/usersSlice';
 interface SearchProps {
   hasError?: boolean;
   onSubmit: (login: string, page: number, sort: string) => void;
 }
 
 export const Search = ({ hasError, onSubmit }: SearchProps) => {
+  const [isDown, setDown] = useState(false);
+  const dispatch = useDispatch();
   const page = useSelector((state: RootState) => state.pagesReducer.page);
   const sort = useSelector((state: RootState) => state.pagesReducer.sort);
+  const login = useSelector((state: RootState) => state.pagesReducer.login);
+  const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
   const searchRef = useRef<HTMLInputElement | null>(null);
-
+  const [fetchUsers] = useLazyGetUsersQuery();
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const login = searchRef.current?.value || '';
@@ -25,6 +34,23 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
     }
   };
 
+  useEffect(() => {
+    if (isDown) {
+      dispatch(setSort('asc'));
+      fetchUsers({ login: login, page: page, sort: sort })
+        .unwrap()
+        .then((response) => {
+          dispatch(setUsers(response));
+        });
+    } else {
+      dispatch(setSort('desc'));
+      fetchUsers({ login: login, page: page, sort: sort })
+        .unwrap()
+        .then((response) => {
+          dispatch(setUsers(response));
+        });
+    }
+  }, [dispatch, fetchUsers, isDown, login, page, sort]);
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
@@ -42,6 +68,17 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
           {hasError && <S.Error>No resault</S.Error>}
           <Button>Search</Button>
         </S.Search>
+        <S.SortBox
+          onClick={() => setDown((prev) => !prev)}
+          style={!isDark ? { color: '#697c9a' } : { color: '#fff' }}
+        >
+          <p>Sort:</p>
+          {isDown ? (
+            <Down fillColor={isDark ? '#fff' : '#697c9a'} />
+          ) : (
+            <Up fillColor={isDark ? '#fff' : '#697c9a'} />
+          )}
+        </S.SortBox>
       </S.Wrapper>
     </form>
   );

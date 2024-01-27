@@ -1,5 +1,6 @@
 import { GithubUser } from '../../types/types';
 import * as S from './style';
+import { FC } from 'react';
 import { InfoItem, InfoItemProps } from '../InfoItem/InfoItem';
 import {
   CompanyIcon,
@@ -14,7 +15,7 @@ interface UserInfoProps
     'blog' | 'company' | 'location' | 'twitter_username'
   > {}
 
-export const UserInfo = ({
+export const UserInfo: FC<UserInfoProps> = ({
   blog,
   company,
   location,

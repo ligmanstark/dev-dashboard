@@ -11,6 +11,7 @@ export const Pagination: FC<Props> = ({ handleFetchUser }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const login = useSelector((state: RootState) => state.pagesReducer.login);
   const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
+  const sort = useSelector((state: RootState) => state.pagesReducer.sort);
   const dataUsers = useSelector(
     (state: RootState) => state.usersReducer.dataUsers
   );
@@ -19,14 +20,13 @@ export const Pagination: FC<Props> = ({ handleFetchUser }) => {
       setCurrentPage((prev) => prev + 1);
     }
   };
-
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
   };
   useEffect(() => {
-    handleFetchUser(login, currentPage, 'desc');
+    handleFetchUser(login, currentPage, sort);
   }, [currentPage]);
 
   return (

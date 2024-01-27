@@ -1,6 +1,7 @@
 import * as S from './style';
 import { ListUsers } from '../../components/ListUsers/ListUsers';
-export const Main = () => {
+import { FC } from 'react';
+export const Main: FC = () => {
   return (
     <S.Wrapper>
       <ListUsers />

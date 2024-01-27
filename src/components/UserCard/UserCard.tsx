@@ -5,13 +5,15 @@ import { UserTitle } from '../UserTitle/UserTitle';
 import { UserAvatar } from '../UserAvatar/UserAvatar';
 import { UserBio } from '../UserBio/UserBio';
 import { UserInfo } from '../UserInfo/UserInfo';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { FC } from 'react';
 interface UserCardProps extends GithubUser {}
 
-export const UserCard = (props: UserCardProps) => {
-  console.log(props);
+export const UserCard: FC<UserCardProps> = (props: UserCardProps) => {
+  const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
   return (
-    <S.Wrapper>
+    <S.Wrapper style={!isDark ? { color: '#697c9a' } : { color: '#fff' }}>
       <S.UserCard>
         <UserAvatar avatar_url={props.avatar_url} login={props.login} />
         <UserTitle

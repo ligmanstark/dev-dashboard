@@ -1,8 +1,9 @@
 import { GithubUser } from '../../types/types';
 import * as S from './style';
+import { FC } from 'react';
 export interface UserStatProps
   extends Pick<GithubUser, 'public_repos' | 'followers' | 'following'> {}
-export const UserStat = ({
+export const UserStat: FC<UserStatProps> = ({
   public_repos,
   followers,
   following

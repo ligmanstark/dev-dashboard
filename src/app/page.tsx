@@ -8,24 +8,20 @@ import { Search } from '../components/Search/Search';
 import { Main } from '../Layout/Main/Main';
 import {
   useLazyGetUsersQuery,
-  useGetUsersQuery,
-  useLazyGetUserQuery
+  useGetUsersQuery
 } from '../store/service/userGithubService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUsers } from '../store/slices/usersSlice';
 import { setPage, setSort, setLogin } from '../store/slices/pagesSlice';
 import { RootState } from '../store/store';
-import { setUser } from '../store/slices/userSlice';
 const Home = () => {
   const dispatch = useDispatch();
   const prevPage = useSelector((state: RootState) => state.pagesReducer.page);
   const prevSort = useSelector((state: RootState) => state.pagesReducer.sort);
   const prevLogin = useSelector((state: RootState) => state.pagesReducer.login);
-  const loginState = useSelector((state: RootState) => state.userReducer.login);
   const { data = [] } = useGetUsersQuery({ login: 'a', page: 1, sort: 'desc' });
 
   const [fetchUsers] = useLazyGetUsersQuery();
-  const [fetchUser] = useLazyGetUserQuery();
 
   const handleFetchUser = (login: string, page: number, sort: string) => {
     fetchUsers({ login: login, page: page, sort: sort })
@@ -41,7 +37,6 @@ const Home = () => {
           dispatch(setLogin(login));
         }
         dispatch(setUsers(response));
-        console.log(response);
       });
   };
 
