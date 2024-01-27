@@ -1,8 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserState } from '../../types/typesState';
 
 const initialState: UserState = {
-  user: []
+  user: [],
+  login: ''
 };
 
 export const userSlice = createSlice({
@@ -11,10 +12,13 @@ export const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
+    },
+    setLogin(state, action: PayloadAction<string>) {
+      state.login = action.payload;
     }
   }
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setLogin } = userSlice.actions;
 
 export default userSlice.reducer;

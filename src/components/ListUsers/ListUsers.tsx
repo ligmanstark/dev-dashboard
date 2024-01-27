@@ -9,7 +9,9 @@ export const ListUsers = () => {
   return (
     <S.Wrapper>
       {usersState &&
-        usersState.map((user) => <ItemUsers key={user.id} {...user} />)}
+        usersState.map((user) => (
+          <ItemUsers key={user.id} {...user} id={user.id} />
+        ))}
     </S.Wrapper>
   );
 };

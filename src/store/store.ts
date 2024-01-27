@@ -9,6 +9,7 @@ import modalReducer from './slices/modalSlice';
 import reposReducer from './slices/reposSlice';
 import pagesReducer from './slices/pagesSlice';
 import themeReducer from './slices/themeSlice';
+import idReducer from './slices/idSlice';
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ export const store = configureStore({
     modalReducer: modalReducer,
     reposReducer: reposReducer,
     pagesReducer: pagesReducer,
-    themeReducer: themeReducer
+    themeReducer: themeReducer,
+    idReducer: idReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
