@@ -13,8 +13,8 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
           <S.Box>
             <S.Img src={avatar_url} />
             <S.TextBox>
-            <S.H1>{login}</S.H1>
-            <S.Text>Repositories:{data.length}</S.Text>
+              <S.H1>{login}</S.H1>
+              <S.Text>Repositories:{data.length}</S.Text>
             </S.TextBox>
           </S.Box>
         </S.Wrapper>
@@ -23,8 +23,8 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
           <S.Box>
             <S.Img src={avatar_url} />
             <S.TextBox>
-            <S.H1>{login}</S.H1>
-            <S.Text>Repositories:{data.length}</S.Text>
+              <S.H1>{login}</S.H1>
+              <S.Text>Repositories:{data.length}</S.Text>
             </S.TextBox>
           </S.Box>
         </S.Wrapper>
