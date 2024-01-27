@@ -24,6 +24,9 @@ export const H1 = styled.h1``;
 
 export const Text = styled.p``;
 
-export const TextBox = styled.div`
+export const TextBox = styled.div``;
 
-`
+export const SubBox = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
