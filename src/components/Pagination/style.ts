@@ -7,7 +7,6 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-
   font-size: 4rem;
   list-style-type: none;
   &:hover {

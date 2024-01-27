@@ -9,10 +9,13 @@ interface Props {
 }
 export const Pagination: FC<Props> = ({ handleFetchUser }) => {
   const [currentPage, setCurrentPage] = useState(1);
-   const login = useSelector((state: RootState) => state.pagesReducer.login);
-  const isDark = useSelector((state:RootState)=>state.themeReducer.isDark)
+  const login = useSelector((state: RootState) => state.pagesReducer.login);
+  const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
+  const dataUsers = useSelector(
+    (state: RootState) => state.usersReducer.dataUsers
+  );
   const handleNextPage = () => {
-    if (currentPage < 34) {
+    if (currentPage < 34 && dataUsers.length > 1) {
       setCurrentPage((prev) => prev + 1);
     }
   };
@@ -23,42 +26,51 @@ export const Pagination: FC<Props> = ({ handleFetchUser }) => {
     }
   };
   useEffect(() => {
-    handleFetchUser(login, currentPage, '');
+    handleFetchUser(login, currentPage, 'desc');
   }, [currentPage]);
 
- 
   return (
-    <S.Ul>
-      {!isDark  ? (
-        <S.Li onClick={handlePrevPage}>
-          <PrevPageIcon
-            fillColor={currentPage < 2 ? 'transparent' : '#697c9a'}
-          />
-        </S.Li>
-      ) : (
-        <S.Li onClick={handlePrevPage}>
-          <PrevPageIcon fillColor={currentPage < 2 ? 'transparent' : '#fff'} />
-        </S.Li>
-      )}
+    <>
+      {dataUsers?.length > 1 ? (
+        <S.Ul>
+          {!isDark ? (
+            <S.Li onClick={handlePrevPage}>
+              <PrevPageIcon
+                fillColor={currentPage < 2 ? 'transparent' : '#697c9a'}
+              />
+            </S.Li>
+          ) : (
+            <S.Li onClick={handlePrevPage}>
+              <PrevPageIcon
+                fillColor={currentPage < 2 ? 'transparent' : '#fff'}
+              />
+            </S.Li>
+          )}
 
-      <S.Li
-        style={{
-          marginBottom: '1rem'
-        }}
-      >
-        {currentPage}
-      </S.Li>
-      {!isDark ? (
-        <S.Li onClick={handleNextPage}>
-          <NextPageIcon
-            fillColor={currentPage > 33 ? 'transparent' : '#697c9a'}
-          />
-        </S.Li>
+          <S.Li
+            style={{
+              marginBottom: '1rem'
+            }}
+          >
+            {currentPage}
+          </S.Li>
+          {!isDark ? (
+            <S.Li onClick={handleNextPage}>
+              <NextPageIcon
+                fillColor={currentPage > 33 ? 'transparent' : '#697c9a'}
+              />
+            </S.Li>
+          ) : (
+            <S.Li onClick={handleNextPage}>
+              <NextPageIcon
+                fillColor={currentPage > 33 ? 'transparent' : '#fff'}
+              />
+            </S.Li>
+          )}
+        </S.Ul>
       ) : (
-        <S.Li onClick={handleNextPage}>
-          <NextPageIcon fillColor={currentPage > 33 ? 'transparent' : '#fff'} />
-        </S.Li>
+        ''
       )}
-    </S.Ul>
+    </>
   );
 };

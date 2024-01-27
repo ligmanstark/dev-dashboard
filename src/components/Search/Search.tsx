@@ -18,7 +18,7 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
     event.preventDefault();
     const login = searchRef.current?.value || '';
     if (login.trim()) {
-      onSubmit(login,page,sort);
+      onSubmit(login, page, sort);
       if (searchRef.current) {
         searchRef.current.value = '';
       }

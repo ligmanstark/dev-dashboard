@@ -57,6 +57,7 @@ export type GithubUsers = {
   avatar_url: string;
   followers_url: string;
   repos_url: string;
+  organizations_url: string;
 };
 
 export type LocalGithubUsers = {
