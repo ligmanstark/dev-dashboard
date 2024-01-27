@@ -19,7 +19,6 @@ const Home = () => {
   const prevPage = useSelector((state: RootState) => state.pagesReducer.page);
   const prevSort = useSelector((state: RootState) => state.pagesReducer.sort);
   const prevLogin = useSelector((state: RootState) => state.pagesReducer.login);
-
   const { data = [] } = useGetUsersQuery({ login: 'a', page: 1, sort: 'desc' });
 
   const [fetchUsers] = useLazyGetUsersQuery();
@@ -38,7 +37,6 @@ const Home = () => {
           dispatch(setLogin(login));
         }
         dispatch(setUsers(response));
-        console.log(response);
       });
   };
 

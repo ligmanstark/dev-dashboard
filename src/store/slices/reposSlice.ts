@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReposState } from '../../types/typesState';
 
 const initialState: ReposState = {
@@ -9,7 +9,7 @@ export const reposSlice = createSlice({
   name: 'repos',
   initialState,
   reducers: {
-    setRepos(state, action) {
+    setRepos(state, action: PayloadAction<[]>) {
       state.repos = action.payload;
     }
   }

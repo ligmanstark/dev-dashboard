@@ -1,11 +1,26 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
+'use client';
 import * as S from './style';
 import { GithubUsers } from '../../types/types';
-import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useGetReposQuery } from '../../store/service/reposGithubService';
+import { setLogin } from '../../store/slices/userSlice';
 export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
+
   const { data = [] } = useGetReposQuery({ login });
+
+  const handleShowProfile = () => {
+    setTimeout(() => {
+      if (login) router.push(login);
+    }, 0);
+  };
+
   return (
     <>
       <S.Wrapper
@@ -15,8 +30,11 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
             ? { color: '#697c9a', cursor: 'pointer' }
             : { color: '#fff', cursor: 'pointer' }
         }
+        onClick={() => {
+          dispatch(setLogin(login));
+        }}
       >
-        <S.Box>
+        <S.Box onClick={handleShowProfile}>
           <S.SubBox>
             <S.Img src={avatar_url} />
             <S.TextBox>

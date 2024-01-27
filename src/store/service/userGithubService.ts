@@ -23,9 +23,9 @@ export const userGithubApi = createApi({
         }
       })
     }),
-    getUser: builder.query<GithubUser[], SetAttr>({
-      query: ({ login, page, sort }) => ({
-        url: `search/users?q=${login}&page=${page}&sort=repositories&order=${sort}`,
+    getUser: builder.query<GithubUser[], string>({
+      query: (login) => ({
+        url: `users/${login}`,
         method: 'GET',
         headers: {
           'content-type': 'application/json'

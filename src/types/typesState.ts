@@ -6,6 +6,7 @@ export type UsersState = {
 
 export type UserState = {
   user: GithubUser[];
+  login?: string;
 };
 
 export type ReposState = {
