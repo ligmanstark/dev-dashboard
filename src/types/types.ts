@@ -34,12 +34,19 @@ export type GithubError = {
 };
 
 export type GithubRepos = {
+  login: string;
   id: number;
+  avatar_url: string;
   name: string;
-  description: string;
+  company: string;
+  blog: string;
+  location: string;
+  bio: string;
+  twitter_username: string;
+  public_repos: number;
+  followers: number;
+  following: number;
   created_at: string;
-  pushed_at: string;
-  language: string;
 };
 
 export type LocalGithubRepos = {
