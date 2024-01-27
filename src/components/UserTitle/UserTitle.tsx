@@ -15,7 +15,7 @@ export const UserTitle: FC<UserTitleProps> = ({
   login,
   created_at
 }: UserTitleProps) => {
-   const createdDate = localDate.format(new Date(created_at));
+  const createdDate = localDate.format(new Date(created_at));
   return (
     <S.UserTitle>
       <h2>{name}</h2>

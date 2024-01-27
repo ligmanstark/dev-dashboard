@@ -13,7 +13,7 @@ import { Button } from '../Button/Button';
 interface UserCardProps extends GithubUser {}
 
 export const UserCard: FC<UserCardProps> = (props: UserCardProps) => {
-  const router = useRouter()
+  const router = useRouter();
   const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
   return (
     <S.Wrapper style={!isDark ? { color: '#697c9a' } : { color: '#fff' }}>
@@ -37,9 +37,10 @@ export const UserCard: FC<UserCardProps> = (props: UserCardProps) => {
           twitter_username={props.twitter_username}
         />
       </S.UserCard>
-      <div style={{marginLeft:'19rem'}}>
-      <Button onClick={()=>router.push('http://localhost:3000/')}>Сome back</Button>
-
+      <div style={{ marginLeft: '19rem' }}>
+        <Button onClick={() => router.push('http://localhost:3000/')}>
+          Сome back
+        </Button>
       </div>
     </S.Wrapper>
   );
