@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../../utils/consts';
 import { GithubRepos } from '../../types/types';
 
-interface SetAttr{
-  login:string
+interface SetAttr {
+  login: string;
 }
 
 export const reposGithubApi = createApi({
@@ -13,7 +13,7 @@ export const reposGithubApi = createApi({
   }),
   endpoints: (builder) => ({
     getRepos: builder.query<GithubRepos[], SetAttr>({
-      query: ({login}) => ({
+      query: ({ login }) => ({
         url: `/users/${login}/repos`,
         method: 'GET',
         headers: {

@@ -21,3 +21,9 @@ export const Img = styled.img`
 `;
 
 export const H1 = styled.h1``;
+
+export const Text = styled.p``;
+
+export const TextBox = styled.div`
+
+`
