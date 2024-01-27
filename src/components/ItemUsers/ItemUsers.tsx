@@ -12,13 +12,14 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const isDark = useSelector((state: RootState) => state.themeReducer.isDark);
-
-  const { data = [] } = useGetReposQuery({ login });
+  const { data = [], isError } = useGetReposQuery({ login });
 
   const handleShowProfile = () => {
-    setTimeout(() => {
-      if (login) router.push(login);
-    }, 0);
+    if (!isError) {
+      setTimeout(() => {
+        if (login) router.push(login);
+      }, 0);
+    }
   };
 
   return (

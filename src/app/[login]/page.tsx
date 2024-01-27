@@ -11,14 +11,6 @@ const Profile = () => {
   const loginState = useSelector((state: RootState) => state.userReducer.login);
   const { data = [] } = useGetUserQuery(loginState as string);
 
-  // const [fetchUser]=useLazyGetUserQuery()
-
-  // useEffect(() => {
-  //   if(loginState)
-  //   fetchUser(loginState).unwrap().then((response)=>{
-
-  //   })
-  // }, [loginState]);
   return (
     <>
       <GlobalStyles />
