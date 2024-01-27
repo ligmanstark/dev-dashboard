@@ -1,0 +1,4 @@
+{
+  "html.format.wrapLineLength": 160,
+  "scssFormatter.printWidth": 160
+}
