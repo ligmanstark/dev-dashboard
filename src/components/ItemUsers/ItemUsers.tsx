@@ -40,7 +40,13 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
             <S.Img src={avatar_url} />
             <S.TextBox>
               <S.H1>{login}</S.H1>
-              <S.Text>Repositories:{data.public_repos}</S.Text>
+              <>
+                {!data.public_repos ? (
+                  'Превышено количество запросов, дождитесь своей очереди'
+                ) : (
+                  <S.Text>Repositories:{data.public_repos}</S.Text>
+                )}
+              </>
             </S.TextBox>
           </S.SubBox>
         </S.Box>
