@@ -41,11 +41,7 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
             <S.TextBox>
               <S.H1>{login}</S.H1>
               <>
-                {!data.public_repos ? (
-                  'Превышено количество запросов, дождитесь своей очереди'
-                ) : (
-                  <S.Text>Repositories:{data.public_repos}</S.Text>
-                )}
+                <S.Text>Repositories:{data.public_repos}</S.Text>
               </>
             </S.TextBox>
           </S.SubBox>

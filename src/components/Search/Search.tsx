@@ -1,6 +1,6 @@
 'use client';
 import { SearchIcon } from '../../assets/index';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from '../Button/Button';
 import * as S from './style';
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,23 +34,34 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
     }
   };
 
-  useEffect(() => {
+  const handleSort = () => {
     if (isDown) {
-      dispatch(setSort('asc'));
-      fetchUsers({ login: login, page: page, sort: sort })
-        .unwrap()
-        .then((response) => {
-          dispatch(setUsers(response));
-        });
-    } else {
       dispatch(setSort('desc'));
-      fetchUsers({ login: login, page: page, sort: sort })
+      fetchUsers({ login: login, page: page, sort: 'desc' })
         .unwrap()
         .then((response) => {
           dispatch(setUsers(response));
+          setDown(false);
+        })
+        .catch((error) => {
+          alert(error);
+          console.log(error.data.message);
+        });
+    } else if (!isDown) {
+      dispatch(setSort('asc'));
+      fetchUsers({ login: login, page: page, sort: 'asc' })
+        .unwrap()
+        .then((response) => {
+          dispatch(setUsers(response));
+          setDown(true);
+        })
+        .catch((error) => {
+          alert(error);
+          console.log(error.data.message);
         });
     }
-  }, [dispatch, fetchUsers, isDown, login, page, sort]);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
@@ -69,7 +80,7 @@ export const Search = ({ hasError, onSubmit }: SearchProps) => {
           <Button>Search</Button>
         </S.Search>
         <S.SortBox
-          onClick={() => setDown((prev) => !prev)}
+          onClick={handleSort}
           style={!isDark ? { color: '#697c9a' } : { color: '#fff' }}
         >
           <p>Sort:</p>
