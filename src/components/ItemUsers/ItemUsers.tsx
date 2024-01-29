@@ -41,8 +41,11 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
             <S.TextBox>
               <S.H1>{login}</S.H1>
               <>
-              {isError?'Превышен лимит запросов':                <S.Text>Repositories:{data.public_repos}</S.Text>
-}
+                {isError ? (
+                  'Превышен лимит запросов'
+                ) : (
+                  <S.Text>Repositories:{data.public_repos}</S.Text>
+                )}
               </>
             </S.TextBox>
           </S.SubBox>
