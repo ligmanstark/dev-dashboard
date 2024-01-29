@@ -19,6 +19,8 @@ export const ItemUsers = ({ login, avatar_url, id }: GithubUsers) => {
       setTimeout(() => {
         if (login) router.push(login);
       }, 0);
+    } else {
+      alert('Превышен лимит запросов');
     }
   };
 

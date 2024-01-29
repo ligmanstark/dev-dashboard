@@ -13,7 +13,9 @@
 ```bash
 git clone https://github.com/ligmanstark/dev-dashboard.git
 ```
+
 Перейдите в папку с репозиторием
+
 ```bash
 npm i
 ```
