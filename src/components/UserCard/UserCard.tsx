@@ -38,7 +38,7 @@ export const UserCard: FC<UserCardProps> = (props: UserCardProps) => {
         />
       </S.UserCard>
       <div style={{ marginLeft: '19rem' }}>
-        <Button onClick={() => router.push('http://localhost:3000/')}>
+        <Button onClick={() => router.push('/')}>
           Сome back
         </Button>
       </div>
